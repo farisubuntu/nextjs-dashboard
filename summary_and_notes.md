@@ -295,3 +295,31 @@ In this chapter...
 
 > **Note**: You cannot change the database region once it has been initalized. If you wish to use a different region, you should set it before creating a database.
 
+- Once connected, navigate to the `.env.local` tab, click `Show secret` and `Copy Snippet`. Make sure you reveal the secrets before copying them.
+
+- Navigate to your code editor and rename the `.env.example` file to `.env`. Paste in the copied contents from `Vercel`.
+
+> **Important**: Go to your `.gitignore` file and make sure `.env` is in the ignored files to prevent your database secrets from being exposed when you push to `GitHub`.
+
+- Finally, run `npm i @vercel/postgres` in your terminal to install the [Vercel Postgres SDK](https://vercel.com/docs/storage/vercel-postgres/sdk).
+
+#### Seed your database
+
+Now that your database has been created, let's seed it with some initial data. This will allow you to have some data to work with as you build the dashboard.
+
+In the `/scripts` folder of your project, there's a file called `seed.js`. This script contains the instructions for creating and seeding the `invoices`, `customers`, `user`, `revenue` tables.
+
+- Next, in your `package.json` file, add the following line to your scripts:
+
+```json
+"scripts": {
+  "build": "next build",
+  "dev": "next dev",
+  "start": "next start",
+  "seed": "node -r dotenv/config ./scripts/seed.js"
+},
+```
+- Now, run `npm run seed`.
+
+> What is 'seeding' in the context of databases?: *Populating the database with an initial set of data
+
