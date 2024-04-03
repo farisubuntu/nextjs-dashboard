@@ -277,3 +277,21 @@ export default function NavLinks() {
 ---
 
 ## Chapter 6: Setting up database
+
+In this chapter...
+
+- Push your project to GitHub.
+- Set up a Vercel account and link your GitHub repo for instant previews and deployments.
+- Create and link your project to a Postgres database.
+- Seed the database with initial data.
+
+---
+
+**After connect to `github` and import the repo `nextjs-dashboard`, click deploy then to create a `Postgres` database:**
+
+- click **Continute to Dashboard** and select **Storage** tab.
+- Select **Connect Store** → **Create New** → **Postgres** → **Continue**.
+- Accept the terms, assign a name to your database, and ensure your database region is set to **Washington D.C (iad1)** - this is also the [default region](https://vercel.com/docs/functions/serverless-functions/regions#select-a-default-serverless-region) for all new Vercel projects. By placing your database in the same region or close to your application code, you can reduce [latency](https://developer.mozilla.org/en-US/docs/Web/Performance/Understanding_latency) for data requests.
+
+> **Note**: You cannot change the database region once it has been initalized. If you wish to use a different region, you should set it before creating a database.
+
