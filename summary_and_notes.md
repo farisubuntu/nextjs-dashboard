@@ -321,5 +321,18 @@ In the `/scripts` folder of your project, there's a file called `seed.js`. This 
 ```
 - Now, run `npm run seed`.
 
-> What is 'seeding' in the context of databases?: *Populating the database with an initial set of data
+> What is 'seeding' in the context of databases?: A: *Populating the database with an initial set of data*
+
+
+**Let's see what your database looks like. Go back to `Vercel`, and click Data on the `sidenav`.**
+
+![Database screen showing dropdown list with four tables: users, customers, invoices, and revenue](https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fdatabase-tables.png&w=2048&q=75)
+
+- By selecting each table, you can view its records and ensure the entries align with the data from `placeholder-data.js` file.
+
+> You can switch to the "query" tab to interact with your database using `SQL`.
+
+---
+
+
 
