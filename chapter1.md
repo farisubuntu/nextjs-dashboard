@@ -138,3 +138,80 @@ Inside `/app/page.tsx` import and use `<Image ... />` component
 
 ![Diagram showing how adding a folder called dashboard creates a new route '/dashboard'](https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fdashboard-route.png&w=3840&q=75)
 
+This means you create a new route segment using a folder, and add a page file inside it.
+
+> **NOTE:** a route is not publicly accessible until a `page.js` or `route.js` file is added to a route segment and, even when a route is made publicly accessible, only the content returned by `page.js` or `route.js` is sent to the client. This means that project files can be safely **colocated** inside route segments in the app directory without accidentally being routable.
+
+- **Private folders** can be created by prefixing a folder with an underscore: `_folderName`. This indicates the folder and all its subfolders is a private implementation detail and should not be considered by the routing system (out of routing)
+
+![An example folder structure using private folders](https://nextjs.org/_next/image?url=%2Fdocs%2Flight%2Fproject-organization-private-folders.png&w=3840&q=75)
+
+**Private folders can be useful for:**
+-   Separating UI logic from routing logic.
+-   Consistently organizing internal files across a project and the `Next.js` ecosystem.
+-   Sorting and grouping files in code editors.
+-   Avoiding potential naming conflicts with future `Next.js` file conventions.
+
+### [Route Groups](https://nextjs.org/docs/app/building-your-application/routing/colocation#route-groups)
+
+- Route groups can be created by wrapping a folder in parenthesis: `(folderName)`. This indicates the folder is for organizational purposes and should **not be included** in the route's URL path.
+
+![An example folder structure using route groups](https://nextjs.org/_next/image?url=%2Fdocs%2Flight%2Fproject-organization-route-groups.png&w=3840&q=75)
+
+**Route groups are useful for:**
+
+-   [Organizing routes into groups](https://nextjs.org/docs/app/building-your-application/routing/route-groups#organize-routes-without-affecting-the-url-path) e.g. by site section, intent, or team.
+-   Enabling nested layouts in the same route segment level:
+    -   [Creating multiple nested layouts in the same segment, including multiple root layouts](https://nextjs.org/docs/app/building-your-application/routing/route-groups#creating-multiple-root-layouts)
+    -   [Adding a layout to a subset of routes in a common segment](https://nextjs.org/docs/app/building-your-application/routing/route-groups#opting-specific-segments-into-a-layout)
+
+### [Module Path Aliases](https://nextjs.org/docs/app/building-your-application/routing/colocation#module-path-aliases)
+
+`Next.js` supports [Module Path Aliases](https://nextjs.org/docs/app/building-your-application/configuring/absolute-imports-and-module-aliases) which make it easier to read and maintain imports across deeply nested project files.
+
+```jsx
+// app/dashboard/settings/analytics/page.js
+// before
+import { Button } from '../../../components/button'
+ 
+// after
+import { Button } from '@/components/button'
+```
+
+## [Project organization strategies](https://nextjs.org/docs/app/building-your-application/routing/colocation#project-organization-strategies)
+
+- There is no "right" or "wrong" way so choose a strategy that works for you and your team and be consistent across the project.
+
+**Here, the high-level of common strategies:**
+
+- *Store project files outside of `app`*: This strategy stores all application code in shared folders in the **root of your project** and keeps the `app` directory purely for routing purposes.
+
+![An example folder structure with project files outside of app](https://nextjs.org/_next/image?url=%2Fdocs%2Flight%2Fproject-organization-project-root.png&w=3840&q=75)
+
+### [](https://nextjs.org/docs/app/building-your-application/routing/colocation#store-project-files-in-top-level-folders-inside-of-app)
+
+- *Store project files in top-level folders inside of `app`*: This strategy stores all application code in shared folders in the **root of the `app` directory**.
+
+![An example folder structure with project files inside app](https://nextjs.org/_next/image?url=%2Fdocs%2Flight%2Fproject-organization-app-root.png&w=3840&q=75)
+
+### [](https://nextjs.org/docs/app/building-your-application/routing/colocation#split-project-files-by-feature-or-route)
+
+- *Split project files by feature or route*: this strategy stores globally shared application code in the root `app` directory and **splits** more specific application code into the route segments that use them.
+
+![An example folder structure with project files split by feature or route](https://nextjs.org/_next/image?url=%2Fdocs%2Flight%2Fproject-organization-app-root-split.png&w=3840&q=75)
+
+---
+
+- In Next.js, you can use a special `layout.tsx` file to create UI that is shared between multiple pages.
+- Any components you import into `layout.tsx` file will be part of the layout.
+- The `<Layout />` component receives a `children` prop. This child can either be a page or another layout. In your case, the **pages** inside `/dashboard` will automatically be nested inside a `<Layout />` like so:
+
+![Folder structure with dashboard layout nesting the dashboard pages as children](https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fshared-layout.png&w=3840&q=75)
+
+- One benefit of using layouts in Next.js is that on navigation, only the page components update while the layout won't re-render. This is called [partial rendering](https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#3-partial-rendering)
+
+- Any UI you add to the root layout will be shared across all pages in your application.
+
+- You can use the **root layout** to modify your `<html>` and `<body>` tags, and add `metadata`
+
+
