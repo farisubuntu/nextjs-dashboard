@@ -122,5 +122,19 @@ Inside `/app/page.tsx` import and use `<Image ... />` component
 ---
 
 
+### Chapter 4: Creating Layouts and Pages
 
+**Topics**
+
+- Create the `dashboard` routes using file-system routing.
+- Understand the role of folders and files when creating new route segments.
+- Create a nested layout that can be shared between multiple dashboard pages.
+- Understand what **colocation**, **partial rendering**, and the **root layout** are.
+
+**Notes:**
+- Each folder represents a **route segment** that maps to a `URL segment`.
+- `page.tsx` is a special Next.js file that exports a React component, and it's required for the route to be accessible.
+- To create a nested route, you can nest folders inside each other and add `page.tsx` files inside them. For example:
+
+![Diagram showing how adding a folder called dashboard creates a new route '/dashboard'](https://nextjs.org/_next/image?url=%2Flearn%2Flight%2Fdashboard-route.png&w=3840&q=75)
 
